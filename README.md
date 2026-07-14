@@ -49,6 +49,95 @@ Instead of simply sending alerts to Slack, the system automatically:
 ```
 
 ---
+# Prerequisites
+
+## 1. Clone this repository
+
+```bash
+git clone https://github.com/<your-github-username>/opensre-demo.git
+cd opensre-demo
+```
+
+---
+
+## 2. Clone the official OpenSRE repository
+
+```bash
+git clone https://github.com/<official-opensre-repository>.git opensre
+```
+
+Example directory structure:
+
+```
+opensre-demo/
+├── README.md
+├── relay.py
+├── alertmanager-values.yaml
+├── prometheus-rules.yaml
+├── bad-deployment.yaml
+└── opensre/
+```
+
+---
+
+## 3. Install uv
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Restart your terminal or run:
+
+```bash
+source ~/.bashrc
+```
+
+---
+
+## 4. Install OpenSRE dependencies
+
+```bash
+cd opensre
+uv sync
+```
+
+---
+
+## 5. Configure the LLM
+
+```bash
+cp .env.example .env
+nano .env
+```
+
+Example:
+
+```env
+LLM_PROVIDER=openai
+OPENAI_MODEL=gpt-5.4
+OPENAI_REASONING_MODEL=gpt-5.4
+LLM_AUTH_METHOD=api_key
+```
+
+Authenticate:
+
+```bash
+uv run opensre auth login openai
+```
+
+---
+
+## 6. Verify the installation
+
+```bash
+uv run opensre doctor
+```
+
+You should see:
+
+```
+✓ All checks passed
+```
 
 # Folder Structure
 
