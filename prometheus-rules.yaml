@@ -1,0 +1,37 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: opensre-demo-rules
+  namespace: monitoring
+  labels:
+    release: kps
+spec:
+  groups:
+    - name: opensre-demo
+      rules:
+        - alert: PodCrashLoopBackOff
+          expr: kube_pod_container_status_waiting_reason{reason="CrashLoopBackOff"} == 1
+          for: 30s
+          labels:
+            severity: critical
+          annotations:
+            summary: "Pod {{ $labels.pod }} is in CrashLoopBackOff"
+            description: "Container in {{ $labels.namespace }}/{{ $labels.pod }} is crash looping."
+
+        - alert: PodImagePullBackOff
+          expr: kube_pod_container_status_waiting_reason{reason="ImagePullBackOff"} == 1
+          for: 30s
+          labels:
+            severity: critical
+          annotations:
+            summary: "Pod {{ $labels.pod }} cannot pull its image"
+            description: "Container in {{ $labels.namespace }}/{{ $labels.pod }} has ImagePullBackOff — check the image tag/registry."
+
+        - alert: DeploymentReplicasZero
+          expr: kube_deployment_status_replicas_available == 0
+          for: 30s
+          labels:
+            severity: critical
+          annotations:
+            summary: "Deployment {{ $labels.deployment }} has 0 available replicas"
+            description: "Deployment {{ $labels.namespace }}/{{ $labels.deployment }} has no healthy pods running."

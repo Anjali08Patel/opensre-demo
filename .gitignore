@@ -1,0 +1,28 @@
+# Environment variables
+.env
+
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environments
+.venv/
+venv/
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+
+# OpenSRE temporary files
+/tmp/
+
+# Python cache
+*.pyo

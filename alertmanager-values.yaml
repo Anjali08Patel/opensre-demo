@@ -1,0 +1,21 @@
+alertmanager:
+  tplConfig: true
+
+  stringConfig: |-
+    global:
+      resolve_timeout: 5m
+
+    route:
+      receiver: opensre-relay
+      group_by:
+        - alertname
+        - namespace
+      group_wait: 10s
+      group_interval: 30s
+      repeat_interval: 24h
+
+    receivers:
+      - name: opensre-relay
+        webhook_configs:
+          - url: "http://10.0.2.15:9600/alert"
+            send_resolved: false
