@@ -54,7 +54,7 @@ Instead of simply sending alerts to Slack, the system automatically:
 ## 1. Clone this repository
 
 ```bash
-git clone https://github.com/<your-github-username>/opensre-demo.git
+git clone https://github.com/Anjali08Patel/opensre-demo.git
 cd opensre-demo
 ```
 
@@ -63,7 +63,7 @@ cd opensre-demo
 ## 2. Clone the official OpenSRE repository
 
 ```bash
-git clone https://github.com/<official-opensre-repository>.git opensre
+git clone https://github.com/Tracer-Cloud/opensre.git
 ```
 
 Example directory structure:
