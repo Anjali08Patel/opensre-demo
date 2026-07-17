@@ -126,7 +126,25 @@ uv run opensre auth login openai
 ```
 
 ---
+## Local LLM Support
 
+This project supports running OpenSRE with a local OpenAI-compatible LLM instead of the public OpenAI API.
+
+### Configuration
+
+```env
+OPENAI_BASE_URL=http://<LOCAL_LLM_SERVER>:<PORT>/v1
+OPENAI_MODEL=qwen3-coder-30b-fp4
+OPENAI_REASONING_MODEL=qwen3-coder-30b-fp4
+OPENAI_API_KEY=<your-api-key>
+```
+
+### Benefits
+
+- No dependency on the public OpenAI API
+- Lower inference cost
+- Faster response times in local/private environments
+- Compatible with any OpenAI-compatible inference server
 ## 6. Verify the installation
 
 ```bash
